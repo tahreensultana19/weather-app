@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import "./globals.css";
-import SearchBarServerComponent from "../components/
+import SearchBarServerComponent from "../components/SearchBarServerComponent";
 
 function getCurrentDate(): string {
     const currentDate = new Date();
