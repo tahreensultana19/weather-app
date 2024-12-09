@@ -102,6 +102,9 @@ const Home: React.FC = () => {
     {weatherData.name}
           </div>
           <div className="text-center text-xl mt-5 text-white">{date}</div>
+          <div className="grid grid-cols-2 gap-4 text-white text-lg mt-8 p-5">
+  {/* Weather stats will be added here */}
+</div>
           
   
 ) : (
