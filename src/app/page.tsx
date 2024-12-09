@@ -117,6 +117,13 @@ const Home: React.FC = () => {
     String.fromCharCode(176)}
 </p>
 
+<p className="flex items-center">
+  <FaTemperatureHigh className="inline-block mr-2 text-red-500 text-4xl" />
+  Max Temp:{" "}
+  {(weatherData.main.temp_max - 273.5).toFixed(1) +
+    String.fromCharCode(176)}
+</p>
+
 </div>
           
   
