@@ -123,6 +123,10 @@ const Home: React.FC = () => {
   {(weatherData.main.temp_max - 273.5).toFixed(1) +
     String.fromCharCode(176)}
 </p>
+<p className="flex items-center">
+  <FaTint className="inline-block mr-2 text-blue-300 text-4xl" />
+  Humidity: {weatherData.main.humidity}%
+</p>
 
 </div>
           
