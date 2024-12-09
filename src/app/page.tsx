@@ -48,7 +48,10 @@ const Home: React.FC = () => {
       }
     }
     async function fetchData(cityName: string): Promise<void> {
-        try {
+      const url = http://localhost:3000/api/weather?address=${cityName};
+      await fetchWeatherData(url);
+    }
+    try {
           const response = await fetch(
             "http://localhost:3000/api/weather?address=" + cityName
           );
