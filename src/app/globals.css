@@ -12,3 +12,11 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+  @media (max-width: 768px) {
+    .text-6xl {
+      font-size: 3rem; /* Adjust font size for smaller screens */
+    }
+    .grid {
+      grid-template-columns: 1fr; /* Stack grid items on small screens */
+    }
+  }
