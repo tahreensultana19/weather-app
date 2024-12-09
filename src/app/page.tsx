@@ -135,6 +135,10 @@ const Home: React.FC = () => {
   <FaEye className="inline-block mr-2 text-green-500 text-4xl" />
   Visibility: {weatherData.visibility} meters
 </p>
+<p className="flex items-center">
+  <FaWind className="inline-block mr-2 text-gray-500 text-4xl" />
+  Wind Speed: {weatherData.wind.speed} m/s
+</p>
 
 </div>
           
