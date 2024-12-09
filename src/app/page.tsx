@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./globals.css";
 
 function getCurrentDate(): string {
@@ -34,6 +34,8 @@ interface WeatherData {
   }
 
 const Home: React.FC = () => {
+    const date = getCurrentDate();
+  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   return (
     <main className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-indigo-900 w-full h-[100vh]">
       <h1 className="text-white text-4xl">Weather App</h1>
