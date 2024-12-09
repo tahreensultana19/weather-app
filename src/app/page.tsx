@@ -67,6 +67,9 @@ const Home: React.FC = () => {
         latitude: number,
         longitude: number
       ): Promise<void> {
+        const url = http://localhost:3000/api/weather?lat=${latitude}&lon=${longitude};
+        await fetchWeatherData(url);
+      }
         try {
           const response = await fetch(
             `http://localhost:3000/api/weather?lat=${latitude}&lon=${longitude}`
