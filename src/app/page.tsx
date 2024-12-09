@@ -127,6 +127,10 @@ const Home: React.FC = () => {
   <FaTint className="inline-block mr-2 text-blue-300 text-4xl" />
   Humidity: {weatherData.main.humidity}%
 </p>
+<p className="flex items-center">
+  <FaCompressArrowsAlt className="inline-block mr-2 text-yellow-500 text-4xl" />
+  Pressure: {weatherData.main.pressure} hPa
+</p>
 
 </div>
           
