@@ -103,7 +103,13 @@ const Home: React.FC = () => {
           </div>
           <div className="text-center text-xl mt-5 text-white">{date}</div>
           <div className="grid grid-cols-2 gap-4 text-white text-lg mt-8 p-5">
-  {/* Weather stats will be added here */}
+            <p className="flex items-center">
+  <FaTemperatureHigh className="inline-block mr-2 text-yellow-400 text-4xl" />
+  Feels Like:{" "}
+  {(weatherData.main.feels_like - 273.5).toFixed(1) +
+    String.fromCharCode(176)}
+</p>
+
 </div>
           
   
