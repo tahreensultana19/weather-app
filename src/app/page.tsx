@@ -139,6 +139,10 @@ const Home: React.FC = () => {
   <FaWind className="inline-block mr-2 text-gray-500 text-4xl" />
   Wind Speed: {weatherData.wind.speed} m/s
 </p>
+<p className="flex items-center">
+  <FaWind className="inline-block mr-2 text-gray-500 text-4xl" />
+  Wind Direction: {weatherData.wind.deg} degrees
+</p>
 
 </div>
           
