@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import "./globals.css";
+import SearchBarServerComponent from "../components/
 
 function getCurrentDate(): string {
     const currentDate = new Date();
@@ -78,8 +79,10 @@ const Home: React.FC = () => {
         }
       }, []);
       
-  return (
-    <main className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-indigo-900 w-full h-[100vh]">
+    return (
+      
+        <main className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-indigo-900 w-full h-[100vh]">
+            <SearchBarServerComponent onSearch={fetchData} />
       <h1 className="text-white text-4xl">Weather App</h1>
     </main>
   );
