@@ -170,6 +170,14 @@ catch (error) {
   console.error("Error fetching data:", error);
   setWeatherData(null); // Reset weather data on error
 }
+{!weatherData ? (
+  <div className="text-center text-4xl mt-16 text-white p-32">
+    <div className="loader"></div> {/* Add CSS for loader */}
+    Loading...
+  </div>
+) : (
+  // Render weather data
+)}
 
 </div>
           
