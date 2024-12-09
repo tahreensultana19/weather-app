@@ -35,7 +35,19 @@ interface WeatherData {
 
 const Home: React.FC = () => {
     const date = getCurrentDate();
-  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+    const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+    async function fetchData(cityName: string): Promise<void> {
+        try {
+          const response = await fetch(
+            "http://localhost:3000/api/weather?address=" + cityName
+          );
+          const jsonData = (await response.json()).data;
+          console.log("Weather data by city:", jsonData);
+          setWeatherData(jsonData);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
   return (
     <main className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-indigo-900 w-full h-[100vh]">
       <h1 className="text-white text-4xl">Weather App</h1>
