@@ -8,6 +8,29 @@ function getCurrentDate(): string {
     const monthName = currentDate.toLocaleString("en-US", options);
     const date = new Date().getDate() + ", " + monthName;
     return date;
+}
+interface WeatherData {
+    weather: {
+      icon: string;
+      description: string;
+    }[];
+    main: {
+      temp: number;
+      feels_like: number;
+      temp_min: number;
+      temp_max: number;
+      pressure: number;
+      humidity: number;
+    };
+    visibility: number;
+    wind: {
+      speed: number;
+      deg: number;
+    };
+    clouds: {
+      all: number;
+    };
+    name: string;
   }
 
 const Home: React.FC = () => {
