@@ -77,12 +77,30 @@ const Home: React.FC = () => {
             }
           );
         }
-      }, []);
+    }, []);
+    
       
     return (
       
         <main className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-indigo-900 w-full h-[100vh]">
-            <SearchBarServerComponent onSearch={fetchData} />
+            <SearchBarServerComponent onSearch={fetchData} />
+            {weatherData && weatherData.weather && weatherData.weather[0] ? (
+  <div className="text-white">
+    <div className="text-6xl">
+      <span>
+        {(weatherData.main.temp - 273.5).toFixed(1) +
+          String.fromCharCode(176)}
+      </span>
+    </div>
+    <div className="text-2xl">
+      {weatherData.weather[0].description.toUpperCase()}
+    </div>
+  </div>
+) : (
+  <div className="text-center text-4xl mt-16 text-white p-32">
+    Loading...
+  </div>
+)}
       <h1 className="text-white text-4xl">Weather App</h1>
     </main>
   );
