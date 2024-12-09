@@ -110,6 +110,13 @@ const Home: React.FC = () => {
     String.fromCharCode(176)}
 </p>
 
+<p className="flex items-center">
+  <FaTemperatureLow className="inline-block mr-2 text-blue-500 text-4xl" />
+  Min Temp:{" "}
+  {(weatherData.main.temp_min - 273.5).toFixed(1) +
+    String.fromCharCode(176)}
+</p>
+
 </div>
           
   
