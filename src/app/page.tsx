@@ -150,6 +150,10 @@ const Home: React.FC = () => {
 ) : (
   // Render weather data
 )}
+catch (error) {
+  console.error("Error fetching data:", error);
+  setWeatherData(null); // Reset weather data on error
+}
 
 </div>
           
