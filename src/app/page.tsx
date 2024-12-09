@@ -63,7 +63,20 @@ const Home: React.FC = () => {
         } catch (error) {
           console.error("Error fetching data:", error);
         }
-      }
+    }
+    useEffect(() => {
+        if ("geolocation" in navigator) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const { latitude, longitude } = position.coords;
+              fetchDataByCoordinates(latitude, longitude);
+            },
+            (error) => {
+              console.error("Error getting geolocation:", error);
+            }
+          );
+        }
+      }, []);
       
   return (
     <main className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-indigo-900 w-full h-[100vh]">
