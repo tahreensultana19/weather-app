@@ -143,6 +143,13 @@ const Home: React.FC = () => {
   <FaWind className="inline-block mr-2 text-gray-500 text-4xl" />
   Wind Direction: {weatherData.wind.deg} degrees
 </p>
+{!weatherData ? (
+  <div className="text-center text-4xl mt-16 text-white p-32">
+    Loading...
+  </div>
+) : (
+  // Render weather data
+)}
 
 </div>
           
