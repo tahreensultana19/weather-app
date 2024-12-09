@@ -33,8 +33,10 @@ interface WeatherData {
     };
     name: string;
   }
-
+// Main component for the weather
 const Home: React.FC = () => {
+    // State and functions here...
+
     const date = getCurrentDate();
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
     async function fetchWeatherData(url: string): Promise<void> {
@@ -99,6 +101,7 @@ const Home: React.FC = () => {
     return (
       
         <main className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-indigo-900 w-full h-[100vh]">
+          {/* Render components and weather data */}
             <SearchBarServerComponent onSearch={fetchData} />
             {weatherData && weatherData.weather && weatherData.weather[0] ? (
 
