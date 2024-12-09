@@ -131,6 +131,10 @@ const Home: React.FC = () => {
   <FaCompressArrowsAlt className="inline-block mr-2 text-yellow-500 text-4xl" />
   Pressure: {weatherData.main.pressure} hPa
 </p>
+<p className="flex items-center">
+  <FaEye className="inline-block mr-2 text-green-500 text-4xl" />
+  Visibility: {weatherData.visibility} meters
+</p>
 
 </div>
           
