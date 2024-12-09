@@ -85,6 +85,8 @@ const Home: React.FC = () => {
         <main className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-indigo-900 w-full h-[100vh]">
             <SearchBarServerComponent onSearch={fetchData} />
             {weatherData && weatherData.weather && weatherData.weather[0] ? (
+
+
   <div className="text-white">
     <div className="text-6xl">
       <span>
@@ -96,12 +98,19 @@ const Home: React.FC = () => {
       {weatherData.weather[0].description.toUpperCase()}
     </div>
   </div>
+  <div className="text-center text-4xl mt-16 text-white">
+    {weatherData.name}
+          </div>
+          <div className="text-center text-xl mt-5 text-white">{date}</div>
+          
+  
 ) : (
   <div className="text-center text-4xl mt-16 text-white p-32">
     Loading...
   </div>
 )}
       <h1 className="text-white text-4xl">Weather App</h1>
+    
     </main>
   );
 };
