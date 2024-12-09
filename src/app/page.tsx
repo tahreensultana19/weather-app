@@ -48,6 +48,23 @@ const Home: React.FC = () => {
           console.error("Error fetching data:", error);
         }
       }
+
+      async function fetchDataByCoordinates(
+        latitude: number,
+        longitude: number
+      ): Promise<void> {
+        try {
+          const response = await fetch(
+            `http://localhost:3000/api/weather?lat=${latitude}&lon=${longitude}`
+          );
+          const jsonData = (await response.json()).data;
+          console.log("Weather data by coordinates:", jsonData);
+          setWeatherData(jsonData);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+      
   return (
     <main className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-indigo-900 w-full h-[100vh]">
       <h1 className="text-white text-4xl">Weather App</h1>
