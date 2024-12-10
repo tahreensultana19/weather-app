@@ -13,7 +13,7 @@ export async function GET(request: { url: string | URL }) {
       "&appid=" +
       "806e87305b8051479bb8950d8430d6ca";
   } else {
-    url = https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=806e87305b8051479bb8950d8430d6ca;
+    url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=806e87305b8051479bb8950d8430d6ca`;
   }
   console.log(url);
   const res = await fetch(url);
