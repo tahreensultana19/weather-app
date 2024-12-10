@@ -1,7 +1,7 @@
 /* Overall Page Styling */
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right, #74ebd5, #acb6e5); /* Horizontal gradient */
+  background: linear-gradient(to right, #0a4a6c70, #033332f7); /* Horizontal gradient */
   color: #ffffff;
   margin: 0;
   padding: 0;
@@ -9,6 +9,41 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+}
+.cloud {
+  position: absolute;
+  background-image: url('/cloud.png'); /* Replace with your cloud image */
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 150px; /* Adjust size as needed */
+  height: 100px; /* Adjust size as needed */
+  opacity: 0.8;
+  animation: moveClouds 20s linear infinite;
+}
+
+/* Add multiple clouds with different positions */
+.cloud:nth-child(1) {
+  top: 20%;
+  left: -150px;
+  animation-duration: 25s;
+}
+
+.cloud:nth-child(2) {
+  top: 40%;
+  left: -200px;
+  animation-duration: 30s;
+}
+
+.cloud:nth-child(3) {
+  top: 60%;
+  left: -100px;
+  animation-duration: 20s;
+}
+
+.cloud:nth-child(4) {
+  top: 80%;
+  left: -250px;
+  animation-duration: 35s;
 }
 
 /* Horizontal Container */
