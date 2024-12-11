@@ -48,18 +48,25 @@ const Home: React.FC = () => {
   const date = getCurrentDate();
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
 
-  async function fetchData(cityName: string): Promise<void> {
+  const fetchData = async (input: string): Promise<void> => {
     try {
-      const response = await fetch(
-        "http://localhost:3000/api/weather?address=" + cityName
-      );
+      let url;
+      if (/^\d+$/.test(input)) {
+        // If input is a number, treat it as a postal code
+        url = `http://localhost:3000/api/weather?postalcode=${input}`;
+      } else {
+        // Otherwise, treat it as a city name
+        url = `http://localhost:3000/api/weather?address=${input}`;
+      }
+  
+      const response = await fetch(url);
       const jsonData = (await response.json()).data;
-      console.log("Weather data by city:", jsonData); // Debug log
+      console.log("Weather data:", jsonData); // Debug log
       setWeatherData(jsonData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  }
+  };
 
   async function fetchDataByCoordinates(
     latitude: number,

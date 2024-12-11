@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 
 interface SearchBarServerComponentProps {
-  onSearch: (cityName: string) => void;
+  onSearch: (input: string) => void; // Change the type to input for flexibility
 }
 
 const SearchBarServerComponent: React.FC<SearchBarServerComponentProps> = ({
   onSearch,
 }) => {
-  const [city, setCity] = useState<string>("");
+  const [input, setInput] = useState<string>("");
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCity(event.target.value);
+    setInput(event.target.value);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSearch(city);
+    onSearch(input); // Call onSearch with the input value
   };
 
   return (
@@ -25,11 +25,11 @@ const SearchBarServerComponent: React.FC<SearchBarServerComponentProps> = ({
     >
       <input
         className="min-w-96 rounded-full border-none h-10 mr-5 text-center text-lg text-black"
-        placeholder="Enter city name"
+        placeholder="Enter city name or postal code" // Updated placeholder
         type="text"
-        id="cityName"
-        name="cityName"
-        value={city}
+        id="locationInput" // Changed ID for clarity
+        name="locationInput" // Changed name for clarity
+        value={input}
         onChange={handleSearch}
       />
       <button
