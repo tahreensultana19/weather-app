@@ -1,45 +1,34 @@
-import React, { useState } from "react";
+"use client";
+import React from "react";
 
-interface SearchBarServerComponentProps {
-  onSearch: (input: string) => void; // Change the type to input for flexibility
+interface CityInputProps {
+  onCityChange: (city: string) => void;
 }
 
-const SearchBarServerComponent: React.FC<SearchBarServerComponentProps> = ({
-  onSearch,
-}) => {
-  const [input, setInput] = useState<string>("");
+const CityInput: React.FC<CityInputProps> = ({ onCityChange }) => {
+  const [city, setCityState] = React.useState("Cuba");
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(event.target.value);
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    onSearch(input); // Call onSearch with the input value
-  };
+  function setCity(value: string): void {
+    setCityState(value);
+    onCityChange(value);
+  }
 
   return (
-    <form
-      className="flex items-center justify-center rounded-2xl p-10"
-      onSubmit={handleSubmit}
-    >
+    <div className="flex justify-center items-center mt-8">
       <input
-        className="min-w-96 rounded-full border-none h-10 mr-5 text-center text-lg text-black"
-        placeholder="Enter city name or postal code" // Updated placeholder
         type="text"
-        id="locationInput" // Changed ID for clarity
-        name="locationInput" // Changed name for clarity
-        value={input}
-        onChange={handleSearch}
+        placeholder="Enter city name"
+        className="p-2 rounded-lg text-black"
+        onChange={(e) => setCity(e.target.value)}
       />
       <button
-        className="w-20 h-10 rounded-full bg-black text-white border border-transparent transition duration-300 hover:bg-purple-500"
-        type="submit"
+        className="ml-4 p-2 bg-blue-600 text-white rounded-lg"
+        onClick={() => setCity(city)}
       >
         Search
       </button>
-    </form>
+    </div>
   );
 };
 
-export default SearchBarServerComponent;
+export default CityInput;
