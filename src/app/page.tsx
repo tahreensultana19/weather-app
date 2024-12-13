@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   FaTemperatureHigh,
@@ -17,7 +18,7 @@ const Home: React.FC = () => {
   });
 
   return (
-    <WeatherFetcher city="Cuba">
+    <WeatherFetcher city="India">
       {(weatherData) => (
         <div>
           <main className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-indigo-900 w-full h-[100vh]">

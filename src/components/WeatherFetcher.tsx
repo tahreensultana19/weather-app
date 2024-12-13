@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React from "react";
 
 interface WeatherData {
   weather: { icon: string; description: string }[];
@@ -16,61 +16,69 @@ interface WeatherData {
   name: string;
 }
 
-interface WeatherFetcherProps {
-  children: (data: WeatherData | null) => ReactNode;
-  city?: string;
-  lat?: number;
-  lon?: number;
+interface WeatherPageProps {
+  weatherData: WeatherData | null;
+  error?: string;
 }
 
-async function fetchWeatherData({
-  city,
-  lat,
-  lon,
-}: {
-  city?: string;
-  lat?: number;
-  lon?: number;
-}): Promise<WeatherData | null> {
-  try {
-    const url = city
-      ? `http://localhost:3000/api/weather?address=${city}`
-      : `http://localhost:3000/api/weather?lat=${lat}&lon=${lon}`;
-    const response = await fetch(url);
-    const jsonData = (await response.json()).data;
-    return jsonData;
-  } catch (error) {
-    console.error("Error fetching weather data:", error);
-    return null;
+const WeatherPage: React.FC<WeatherPageProps> = ({ weatherData, error }) => {
+  if (error) {
+    return <p>Error: {error}</p>;
   }
-}
-
-const WeatherFetcher: React.FC<WeatherFetcherProps> = ({
-  children,
-  city,
-  lat,
-  lon,
-}) => {
-  const [searchQuery, setSearchQuery] = useState(city || "");
-  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-
-  const handleSearch = async () => {
-    const data = await fetchWeatherData({ city: searchQuery, lat, lon });
-    setWeatherData(data);
-  };
 
   return (
     <div>
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search for a city"
-      />
-      <button onClick={handleSearch}>Search</button>
-      {children(weatherData)}
+      <h1>Weather Info</h1>
+      {weatherData ? (
+        <div>
+          <h2>{weatherData.name}</h2>
+          <p>{weatherData.weather[0].description}</p>
+          <p>Temperature: {weatherData.main.temp}°C</p>
+          <p>Feels Like: {weatherData.main.feels_like}°C</p>
+          <p>Humidity: {weatherData.main.humidity}%</p>
+        </div>
+      ) : (
+        <p>No weather data available.</p>
+      )}
     </div>
   );
 };
 
-export default WeatherFetcher;
+export async function getServerSideProps(context: any) {
+  const { city = "New York" } = context.query;
+
+  // Get the base URL dynamically
+  const baseUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : `https://${context.req.headers.host}`;
+
+  const apiUrl = `${baseUrl}/api/weather?address=${city}`;
+
+  try {
+    const response = await fetch(apiUrl);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch weather data: ${response.statusText}`);
+    }
+
+    const jsonData = await response.json();
+
+    return {
+      props: {
+        weatherData: jsonData.data || null,
+      },
+    };
+  } catch (error: any) {
+    console.error("Error fetching weather data:", error);
+
+    return {
+      props: {
+        weatherData: null,
+        error: error.message || "Failed to fetch weather data.",
+      },
+    };
+  }
+}
+
+export default WeatherPage;
